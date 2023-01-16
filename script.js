@@ -88,6 +88,7 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+
 // Function to prompt user for password options
 function getPasswordOptions() {
 
@@ -123,9 +124,38 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   var passConditions = getPasswordOptions();
-  console.log(passConditions);
+  var passwordArray = [];
+  
+  //Checks to make sure the passConditions variable actually contains a value to avoid errors
+  if (passConditions != undefined){
+    //Gets the password length as a seperate variable as you know the first item in the array will always be the password length
+    passwordLength = passConditions[0];
+    //Creates a new array from the 2nd item to the end item which only contains boolean values for whether or not a condition is wanted
+    requirements = passConditions.splice(1, passConditions.length);
+    
+    //Know the order in which questions are asked so if = true then concats into a new array, if all are true then it will return a full array
+    //in future there may be a way to either do this as a loop or through a function
+    if (requirements[0] === true){
+      passwordArray = passwordArray.concat(lowerCasedCharacters);
+    }
+    if(requirements[1] === true){
+      passwordArray = passwordArray.concat(upperCasedCharacters);
+    }
+    if (requirements[2] === true){
+      passwordArray = passwordArray.concat(numericCharacters);
+    }
+    if (requirements[3] === true){
+      passwordArray = passwordArray.concat(specialCharacters);
+    }
+    //Exception handling and returns undefined if nothing is equal to true
+    else if (requirements[0] === false && requirements[1] === false && requirements[2] === false && requirements[3] === false){
+      alert("You must have at least 1 selected")
+      return;
+    }
+    console.log(passwordLength);
+    console.log(passwordArray);
+  }
 }
-
 
 
 
