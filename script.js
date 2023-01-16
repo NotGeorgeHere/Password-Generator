@@ -115,14 +115,20 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  return Math.floor(Math.random() * arr);
 }
+
+
 
 // Function to generate password with user input
 function generatePassword() {
   var passConditions = getPasswordOptions();
   console.log(passConditions);
 }
+
+
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
